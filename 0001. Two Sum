@@ -1,0 +1,35 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 28-06-2025
+Platform    - Leet Code
+*/
+
+//0001. Two Sum
+
+class Solution 
+{
+    public:
+        vector<int> twoSum(vector<int>& Numbers, int Target) 
+        {
+            int Value;
+            vector<int> Answer;
+            unordered_map<int, int> Numbers_Map;
+
+            for(int X = 0; X < Numbers.size(); X++)
+            {
+                Value = Target - Numbers[X];
+
+                if(Numbers_Map.count(Value))
+                {
+                    Answer.push_back(Numbers_Map[Value]);
+                    Answer.push_back(X);
+
+                    break;
+                }
+
+                Numbers_Map[Numbers[X]] = X;
+            }
+
+            return Answer;
+        }
+};
