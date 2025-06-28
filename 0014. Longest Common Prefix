@@ -1,0 +1,42 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 28-06-2025
+Platform    - Leet Code
+*/
+
+//0014. Longest Common Prefix
+
+class Solution {
+    public:
+        string longestCommonPrefix(vector<string>& Strings) 
+        {
+            int Check = 0;
+            string Prefix = "";
+
+            sort(Strings.begin(), Strings.end());
+
+            for(int X = 0; X < Strings[0].size(); X++)
+            {
+                for(int Y = 1; Y < Strings.size(); Y++)
+                {
+                    if(Strings[0][X] != Strings[Y][X])
+                    {
+                        Check = 1;
+
+                        break;
+                    }
+                }
+
+                if(Check == 1)
+                {
+                    break;
+                }
+                else
+                {
+                    Prefix += Strings[0][X];
+                }
+            }
+
+            return Prefix;
+        }
+};
