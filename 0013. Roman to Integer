@@ -11,9 +11,8 @@ class Solution
     public:
         int romanToInt(string Value_Roman) 
         {
-            unordered_map<char, int> Values = {{'I', 1}, {'V', 5}, {'X', 10}, {'L', 50}, {'C', 100}, {'D', 500}, {'M', 1000}};
-
             int Value = 0;
+            unordered_map<char, int> Values = {{'I', 1}, {'V', 5}, {'X', 10}, {'L', 50}, {'C', 100}, {'D', 500}, {'M', 1000}};
 
             for(int X = 0; X < Value_Roman.length(); X++)
             {
