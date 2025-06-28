@@ -1,0 +1,31 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 28-06-2025
+Platform    - Leet Code
+*/
+
+//0009. Palindrome Number
+
+class Solution {
+    public:
+        bool isPalindrome(int Number) 
+        {
+            double Number_Reverse = 0;
+
+            for(int X = Number; X > 0; X /= 10)
+            {
+                Number_Reverse *= 10;
+
+                Number_Reverse += (X % 10);
+            }
+
+            if (Number == Number_Reverse)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+};
