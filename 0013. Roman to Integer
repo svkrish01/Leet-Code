@@ -1,0 +1,39 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 28-06-2025
+Platform    - Leet Code
+*/
+
+//0013. Roman to Integer
+
+class Solution 
+{
+    public:
+        int romanToInt(string Value_Roman) 
+        {
+            map<char, int> Values = {{'I', 1}, {'V', 5}, {'X', 10}, {'L', 50}, {'C', 100}, {'D', 500}, {'M', 1000}};
+
+            int Value = 0;
+
+            for(int X = 0; X < Value_Roman.length(); X++)
+            {
+                if(X < Value_Roman.length() - 1)
+                {
+                    if(Values[Value_Roman[X]] < Values[Value_Roman[X+1]])
+                    {
+                        Value -= Values[Value_Roman[X]];
+                    }
+                    else
+                    {
+                        Value += Values[Value_Roman[X]];
+                    }
+                }
+                else
+                {
+                     Value += Values[Value_Roman[X]];
+                }
+            }
+
+            return Value;
+        }
+};
