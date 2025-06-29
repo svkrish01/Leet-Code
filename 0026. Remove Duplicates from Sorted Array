@@ -1,0 +1,27 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 29-06-2025
+Platform    - Leet Code
+*/
+
+//0026. Remove Duplicates from Sorted Array
+
+class Solution 
+{
+    public:
+        int removeDuplicates(vector<int>& Numbers) 
+        {
+            int K = 1;
+
+            for(int X = 0; X < Numbers.size() - 1; X++)
+            {
+                if(Numbers[X] != Numbers[X+1])
+                {
+                    Numbers[K] = Numbers[X+1];
+                    K++;
+                }
+            }
+
+            return K;
+        }
+};
