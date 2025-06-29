@@ -1,0 +1,31 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 29-06-2025
+Platform    - Leet Code
+*/
+
+//0027. Remove Element
+
+class Solution 
+{
+    public:
+        int removeElement(vector<int>& Numbers, int Value) 
+        {
+            int K = 0;
+
+            for(int X = 0; X < Numbers.size(); X++)
+            {
+                if(Numbers[X] == Value)
+                {
+                    Numbers.erase(Numbers.begin() + X);
+                    X--;
+                }
+                else
+                {
+                    K++;
+                }
+            }
+
+            return K;
+        }
+};
