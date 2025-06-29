@@ -1,0 +1,53 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 29-06-2025
+Platform    - Leet Code
+*/
+
+//0035. Search Insert Position
+
+class Solution 
+{
+    public:
+        int searchInsert(vector<int>& Numbers, int Target) 
+        {
+            int Left_Pointer = 0;
+            int Right_Pointer = Numbers.size() - 1;
+
+            int Centre_Pointer;
+
+            if(Numbers[Left_Pointer] >= Target)
+            {
+                return 0;
+            }
+            else if(Numbers[Right_Pointer] < Target)
+            {
+                return Right_Pointer + 1;
+            }
+
+            while(Left_Pointer < Right_Pointer)
+            {
+                Centre_Pointer = (Left_Pointer + Right_Pointer)/2;
+
+                if(Numbers[Centre_Pointer] < Target)
+                {
+                    Left_Pointer = Centre_Pointer;
+                }
+                else if(Numbers[Centre_Pointer] > Target)
+                {
+                    Right_Pointer = Centre_Pointer;
+                }
+                else if(Numbers[Centre_Pointer] == Target)
+                {
+                    return Centre_Pointer;
+                }
+
+                if(Left_Pointer + 1 == Right_Pointer)
+                {
+                    return Right_Pointer;
+                }
+            }
+
+            return Left_Pointer;
+        }
+};
