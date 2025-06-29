@@ -1,0 +1,31 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 29-06-2025
+Platform    - Leet Code
+*/
+
+//0028. Find the Index of the First Occurrence in a String
+
+class Solution 
+{
+    public:
+        int strStr(string Haystack, string Needle) 
+        {
+            int Length = Needle.size();
+
+            if(Length > Haystack.size())
+            {
+                return -1;
+            }
+
+            for(int X = 0; X <= Haystack.size() - Length; X++)
+            {
+                if(Haystack.compare(X, Length, Needle) == 0)
+                {
+                    return X;
+                }
+            }
+
+            return -1;
+        }
+};
