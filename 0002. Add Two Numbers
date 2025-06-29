@@ -1,0 +1,64 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 29-06-2025
+Platform    - Leet Code
+*/
+
+//0002. Add Two Numbers
+
+class Solution 
+{
+    public:
+        ListNode* addTwoNumbers(ListNode* List_1, ListNode* List_2) 
+        {
+            ListNode* Dummy = new ListNode(0);
+            ListNode* Tail = Dummy;
+            int Carry = 0;
+            
+            int Sum;
+            
+            while(List_1 != nullptr && List_2 != nullptr)
+            {
+                Sum = (List_1->val + List_2->val + Carry)%10;
+                Carry = (List_1->val + List_2->val + Carry)/10;
+
+                Tail->next = new ListNode(Sum);
+                Tail = Tail->next;
+
+                List_1 = List_1->next;
+                List_2 = List_2->next;
+            }
+
+            while(List_1 != nullptr || List_2 != nullptr)
+            {
+                if(List_1 != nullptr)
+                {
+                    Sum = (List_1->val + Carry)%10;
+                    Carry = (List_1->val + Carry)/10;
+
+                    Tail->next = new ListNode(Sum);
+                    Tail = Tail->next;
+                    
+                    List_1 = List_1->next;
+                }
+                else
+                {
+                    Sum = (List_2->val + Carry)%10;
+                    Carry = (List_2->val + Carry)/10;
+
+                    Tail->next = new ListNode(Sum);
+                    Tail = Tail->next;
+                                       
+                    List_2 = List_2->next;
+                }
+            }
+
+            if(Carry == 1)
+            {
+                Tail->next = new ListNode(Carry);
+                Tail = Tail->next;
+            }
+
+            return Dummy->next;
+        }
+};
