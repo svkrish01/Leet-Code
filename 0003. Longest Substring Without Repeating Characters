@@ -1,0 +1,37 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 30-06-2025
+Platform    - Leet Code
+*/
+
+//0003. Longest Substring Without Repeating Characters
+
+class Solution 
+{
+    public:
+        int lengthOfLongestSubstring(string String) 
+        {
+            int Left = 0;
+            int Right = 0;
+            int Length_Max = 0;
+            map<char, int> Map;
+
+            int Length;
+
+            while(Right<String.size())
+            {
+                if(Map.count(String[Right]) == 1 && Left <= Map[String[Right]])
+                {
+                    Left = Map[String[Right]] + 1;
+                }
+
+                Map[String[Right]] = Right;
+                Length = Right - Left + 1;
+                Length_Max = max(Length, Length_Max);
+
+                Right++;
+            }
+
+            return Length_Max;
+        }
+};
