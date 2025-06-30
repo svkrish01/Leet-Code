@@ -1,0 +1,43 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 30-06-2025
+Platform    - Leet Code
+*/
+
+//0011. Container With Most Water
+
+class Solution 
+{
+    public:
+        int maxArea(vector<int>& Heights) 
+        {
+            int Left = 0;
+            int Right = Heights.size() - 1;
+            int Area_Max = 0;
+
+            int Height;
+            int Area;
+
+            while(Left < Right)
+            {
+                Height = min(Heights[Left], Heights[Right]);
+                Area = Height*(Right - Left);
+
+                if(Area > Area_Max)
+                {
+                    Area_Max = Area;
+                }
+
+                if(Heights[Left] < Heights[Right])
+                {
+                    Left++;
+                }
+                else
+                {
+                    Right--;
+                }
+            }
+
+            return Area_Max;
+        }
+};
