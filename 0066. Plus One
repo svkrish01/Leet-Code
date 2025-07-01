@@ -1,0 +1,33 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 01-07-2025
+Platform    - Leet Code
+*/
+
+//0066. Plus One
+
+class Solution {
+    public:
+        vector<int> plusOne(vector<int>& Digits) 
+        {
+            int Carry = 1;
+
+            vector<int> Digits_Plus;
+            int Sum;
+
+            for(int X = Digits.size() - 1; X >= 0; X--)
+            {
+                Sum = (Digits[X] + Carry) % 10;
+                Carry = (Digits[X] + Carry) / 10;
+
+                Digits_Plus.insert(Digits_Plus.begin(), Sum);
+            }
+
+            if(Carry == 1)
+            {
+                Digits_Plus.insert(Digits_Plus.begin(), Carry);
+            }
+
+            return Digits_Plus;
+        }
+};
