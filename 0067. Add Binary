@@ -1,0 +1,38 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 01-07-2025
+Platform    - Leet Code
+*/
+
+//0067. Add Binary
+
+class Solution 
+{
+    public:
+        string addBinary(string A, string B) 
+        {
+            int Carry = 0;
+
+            string String;
+            int Val_A, Val_B;
+            int Sum;
+
+            for(int X = 1 ; X <= max(A.size(), B.size()); X++)
+            {
+                Val_A = (X <= A.size()) ? A[A.size() - X] - '0' : 0;
+                Val_B = (X <= B.size()) ? B[B.size() - X] - '0' : 0;
+
+                Sum = (Val_A + Val_B + Carry) % 2;
+                Carry = (Val_A + Val_B + Carry) / 2;
+
+                String.insert(String.begin(), Sum + '0');
+            }
+            
+            if(Carry)
+            {
+                String.insert(String.begin(), Carry + '0');
+            }
+
+            return String;
+        }
+};
