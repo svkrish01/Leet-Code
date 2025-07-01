@@ -1,0 +1,45 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 01-07-2025
+Platform    - Leet Code
+*/
+
+//0069. Sqrt(x)
+
+class Solution 
+{
+    public:
+        int mySqrt(int X) 
+        {
+            int Left = 0;
+            int Right = X;
+
+            long long Centre, Centre_Square; 
+
+            if(X == 0 || X == 1)
+            {
+                return X;
+            }
+
+            while(Left + 1 < Right)
+            {
+                Centre = (Left + Right)/2;
+                Centre_Square = Centre * Centre;
+
+                if(Centre_Square == X)
+                {
+                    return Centre;
+                }
+                else if(Centre_Square < X)
+                {
+                    Left = Centre;
+                }
+                else
+                {
+                    Right = Centre;
+                }
+            }
+
+            return Left;
+        }
+};
