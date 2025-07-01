@@ -1,0 +1,35 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 01-07-2025
+Platform    - Leet Code
+*/
+
+//0058. Length of Last Word
+
+class Solution 
+{
+    public:
+        int lengthOfLastWord(string String) 
+        {
+            int Counter = 0;
+
+            for(int X = 0; X < String.size() - 1; X++)
+            {
+                if(String[X] != ' ')
+                {
+                    Counter++;
+                }
+                else if(String[X + 1] != ' ')
+                {
+                    Counter = 0;
+                }
+            }
+
+            if(String[String.size()-1] != ' ')
+            {
+                Counter++;
+            }
+
+            return Counter;
+        }
+};
