@@ -1,0 +1,55 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 31-07-2025
+Platform    - Leet Code
+*/
+
+//0083. Remove Duplicates from Sorted List
+
+class Solution 
+{
+    public:
+        ListNode* deleteDuplicates(ListNode* Head) 
+        {
+            int Check = 1;
+
+            ListNode* Node_Current;
+            ListNode* Node_Next;
+
+            Node_Current = Head;
+
+            if(Node_Current == nullptr)
+            {
+                return Head;
+            }
+            else if(Node_Current->next == nullptr)
+            {
+                return Head;
+            }
+            else
+            {
+                Node_Next = Head->next;
+
+                while(Check == 1)
+                {
+                    if(Node_Current->val == Node_Next->val)
+                    {
+                        Node_Current->next = Node_Next->next;
+                        Node_Next = Node_Next->next;
+                    }
+                    else
+                    {
+                        Node_Current = Node_Current->next;
+                        Node_Next = Node_Next->next;
+                    }
+
+                    if(Node_Next == nullptr)
+                    {
+                        Check = 0;
+                    }
+                }
+            }
+
+            return Head;
+        }
+};
