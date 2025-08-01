@@ -1,0 +1,40 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 01-08-2025
+Platform    - Leet Code
+*/
+
+//0094. Binary Tree Inorder Traversal
+
+class Solution 
+{
+    public:
+        vector<int> inorderTraversal(TreeNode* Root) 
+        {
+            vector<int> Result;
+
+            Recursor(Root, &Result);
+
+            return Result;
+        }
+    
+        void Recursor(TreeNode* Current, vector<int>* List)
+        {
+            if(Current == nullptr)
+            {
+                return;
+            }
+
+            if(Current->left != nullptr)
+            {
+                Recursor(Current->left, List);
+            }
+
+            List->push_back(Current->val);
+
+            if(Current->right != nullptr)
+            {
+                Recursor(Current->right, List);
+            }
+        }
+};
