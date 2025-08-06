@@ -1,0 +1,42 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 06-08-2025
+Platform    - Leet Code
+*/
+
+//0110. Balanced Binary Tree
+
+class Solution 
+{
+    public:
+        bool isBalanced(TreeNode* Root) 
+        {
+            bool Balanced = true;
+            
+            int Depth = Balance_Check(Root, 0, &Balanced);
+            
+            return Balanced;
+        }
+        
+        int Balance_Check(TreeNode* Node, int Depth, bool* Balanced)
+        {
+            if(Node == nullptr)
+            {
+                return Depth; 
+            }
+            else
+            {
+                Depth++;
+
+                int Depth_Left = Balance_Check(Node->left, Depth, Balanced);
+                int Depth_Right = Balance_Check(Node->right, Depth, Balanced);
+
+                if(abs(Depth_Left - Depth_Right) > 1)
+                {
+                    *Balanced = false;
+                }
+                
+                return max(Depth_Left, Depth_Right);
+            }
+        }
+};
