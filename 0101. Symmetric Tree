@@ -33,27 +33,27 @@ class Solution
         }
 
         bool Check_Symmetry(TreeNode* Node_Left, TreeNode* Node_Right)
+        {
+            if(Node_Left == nullptr || Node_Right == nullptr)
             {
-                if(Node_Left == nullptr || Node_Right == nullptr)
+                if(Node_Left == Node_Right)
                 {
-                    if(Node_Left == Node_Right)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
+                    return true;
                 }
                 else
                 {
-                    bool Check_Head, Check_Out, Check_In;
-
-                    Check_Head = (Node_Left->val == Node_Right->val) ? true : false;
-                    Check_Out = Check_Symmetry(Node_Left->left, Node_Right->right);
-                    Check_In = Check_Symmetry(Node_Left->right, Node_Right->left);
-
-                    return Check_Head && Check_Out && Check_In;
+                    return false;
                 }
             }
+            else
+            {
+                bool Check_Head, Check_Out, Check_In;
+
+                Check_Head = (Node_Left->val == Node_Right->val) ? true : false;
+                Check_Out = Check_Symmetry(Node_Left->left, Node_Right->right);
+                Check_In = Check_Symmetry(Node_Left->right, Node_Right->left);
+
+                return Check_Head && Check_Out && Check_In;
+            }
+        }
 };
