@@ -1,0 +1,45 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 06-08-2025
+Platform    - Leet Code
+*/
+
+//0100. Same Tree
+
+class Solution 
+{
+    public:
+        bool isSameTree(TreeNode* Head_1, TreeNode* Head_2) 
+        {
+            bool Equality;
+
+            Equality = Check_Node(Head_1, Head_2);
+
+            return Equality;
+        }
+
+        bool Check_Node(TreeNode* Node_1, TreeNode* Node_2)
+        {
+            if(Node_1 == nullptr || Node_2 == nullptr)
+            {
+                if(Node_1 == Node_2)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                bool Check_Head, Check_Left, Check_Right;
+
+                Check_Head = (Node_1->val == Node_2->val) ? true : false;
+                Check_Right = Check_Node(Node_1->right, Node_2->right);
+                Check_Left = Check_Node(Node_1->left, Node_2->left);
+
+                return Check_Head && Check_Left && Check_Right;
+            }
+        }
+};
