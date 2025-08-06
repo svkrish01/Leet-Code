@@ -1,0 +1,57 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 06-08-2025
+Platform    - Leet Code
+*/
+
+//0112. Path Sum
+
+class Solution 
+{
+    public:
+        bool hasPathSum(TreeNode* Root, int Target_Sum) 
+        {
+            if(Root == nullptr)
+            {
+                return false;
+            }
+            else
+            {
+                bool Check = Sum_Check(Root, 0, Target_Sum);
+
+                return Check;
+            }
+        }
+        
+        bool Sum_Check(TreeNode* Node, int Sum, int Target_Sum)
+        {
+            if(Node->left == nullptr && Node->right == nullptr)
+            {
+                if(Sum + Node->val == Target_Sum)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                bool Check_Left = false;
+                bool Check_Right = false;
+
+                if(Node->left != nullptr)
+                {
+                    Check_Left  = Sum_Check(Node->left, Sum + Node->val, Target_Sum);
+                }
+
+                if(Node->right != nullptr)
+                {
+                    Check_Right  = Sum_Check(Node->right, Sum + Node->val, Target_Sum);
+                }
+
+                return Check_Left || Check_Right;
+            }
+        }
+};
