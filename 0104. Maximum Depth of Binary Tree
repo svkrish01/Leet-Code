@@ -1,0 +1,35 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 06-08-2025
+Platform    - Leet Code
+*/
+
+//0104. Maximum Depth of Binary Tree
+
+class Solution 
+{
+    public:
+        int maxDepth(TreeNode* Root) 
+        {
+            int Depth = Depth_Check(Root, 0);
+
+            return Depth;
+        }
+        
+        int Depth_Check(TreeNode* Node, int Depth)
+        {
+            if(Node == nullptr)
+            {
+                return Depth; 
+            }
+            else
+            {
+                Depth++;
+
+                int Depth_Left = Depth_Check(Node->left, Depth);
+                int Depth_Right = Depth_Check(Node->right, Depth);
+
+                return max(Depth_Left, Depth_Right);
+            }
+        }
+};
