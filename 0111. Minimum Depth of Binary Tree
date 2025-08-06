@@ -1,0 +1,64 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 06-08-2025
+Platform    - Leet Code
+*/
+
+//0111. Minimum Depth of Binary Tree
+
+class Solution 
+{
+    public:
+        int minDepth(TreeNode* Root) 
+        {
+            if(Root == nullptr)
+            {
+                return 0;
+            }
+            else
+            {
+                int Depth_Min = 100000;
+                int Depth = Depth_Check(Root, 1, &Depth_Min);
+
+                return Depth;
+            }
+        }
+        
+        int Depth_Check(TreeNode* Node, int Depth, int* Depth_Min)
+        {
+            if(Node->left == nullptr && Node->right == nullptr)
+            {
+                if(Depth < *Depth_Min)
+                {
+                    *Depth_Min = Depth;
+                }
+
+                return Depth; 
+            }
+            else
+            {
+                Depth++;
+
+                if(*Depth_Min < Depth)
+                {
+                    return *Depth_Min;
+                }
+
+                int Depth_Left = (Node->left != nullptr) ? Depth_Check(Node->left, Depth, Depth_Min) : 0;
+                int Depth_Right = (Node->right != nullptr) ? Depth_Check(Node->right, Depth, Depth_Min) : 0;
+
+                if(Depth_Left == 0)
+                {
+                    return Depth_Right;
+                }
+                else if(Depth_Right == 0)
+                {
+                    return Depth_Left;
+                }
+                else
+                {
+                    return min(Depth_Left, Depth_Right);
+                }
+            }
+        }
+};
