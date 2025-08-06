@@ -1,0 +1,59 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 06-08-2025
+Platform    - Leet Code
+*/
+
+//0101. Symmetric Tree
+
+class Solution 
+{
+    public:
+        bool isSymmetric(TreeNode* Root) 
+        {
+            if(Root->left == nullptr || Root->right == nullptr)
+            {
+                if(Root->left == Root->right)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                bool Equality;
+
+                Equality = Check_Symmetry(Root->left, Root->right);
+
+                return Equality;
+            }
+        }
+
+        bool Check_Symmetry(TreeNode* Node_Left, TreeNode* Node_Right)
+            {
+                if(Node_Left == nullptr || Node_Right == nullptr)
+                {
+                    if(Node_Left == Node_Right)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    bool Check_Head, Check_Out, Check_In;
+
+                    Check_Head = (Node_Left->val == Node_Right->val) ? true : false;
+                    Check_Out = Check_Symmetry(Node_Left->left, Node_Right->right);
+                    Check_In = Check_Symmetry(Node_Left->right, Node_Right->left);
+
+                    return Check_Head && Check_Out && Check_In;
+                }
+            }
+};
