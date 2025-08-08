@@ -1,0 +1,55 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 07-08-2025
+Platform    - Leet Code
+*/
+
+//0118. Pascal's Triangle
+
+class Solution 
+{
+    public:
+        vector<vector<int>> generate(int Row_Count) 
+        {
+            if(Row_Count < 3)
+            {
+                if(Row_Count == 1)
+                {
+                    return {{1}};
+                }
+                else
+                {
+                    return {{1}, {1, 1}};
+                }
+            }
+            else
+            {
+                vector<vector<int>> P_Triangle;
+
+                P_Triangle.push_back({1});
+                P_Triangle.push_back({1, 1});
+
+                for(int X = 2; X < Row_Count; X++)
+                {
+                    vector<int> Row;
+
+                    Row.push_back(1);
+
+                    for(int Y = 1; Y < X; Y++)
+                    {
+                        int Term;
+
+                        Term = P_Triangle[X-1][Y-1] + P_Triangle[X-1][Y];
+
+                        Row.push_back(Term);
+                    }
+
+                    Row.push_back(1);
+
+                    P_Triangle.push_back(Row);
+                }
+
+                return P_Triangle;
+            }
+        }
+};
