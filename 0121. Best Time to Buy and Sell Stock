@@ -1,0 +1,36 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 07-08-2025
+Platform    - Leet Code
+*/
+
+//0121. Best Time to Buy and Sell Stock
+
+class Solution 
+{
+    public:
+        int maxProfit(vector<int>& Prices) 
+        {
+            int Days = Prices.size();
+
+            int Max_Profit = 0;
+            int Profit = 0;
+
+            for(int X = 1; X < Days; X++)
+            {
+                Profit += (Prices[X] - Prices[X-1]);
+
+                if(Profit < 0)
+                {
+                    Profit = 0;
+                }
+
+                if(Profit > Max_Profit)
+                {
+                    Max_Profit = Profit;
+                } 
+            }
+
+            return Max_Profit;
+        }
+};
