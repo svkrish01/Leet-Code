@@ -1,0 +1,47 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 07-08-2025
+Platform    - Leet Code
+*/
+
+//0125. Valid Palindrome
+
+class Solution 
+{
+    public:
+        bool isPalindrome(string Input) 
+        {
+            int Length = Input.size();
+            int Check = true;
+
+            string Input_Converted;
+
+            for(int X = 0; X < Length; X++)
+            {
+                if(Input[X] >= 'A' && Input[X] <= 'Z')
+                {
+                    Input_Converted.push_back(Input[X] - 'A' + 'a');
+                }
+                else if(Input[X] >= 'a' && Input[X] <= 'z')
+                {
+                    Input_Converted.push_back(Input[X]);
+                }
+                else if(Input[X] >= '0' && Input[X] <= '9')
+                {
+                    Input_Converted.push_back(Input[X]);
+                }
+            }
+
+            int Length_Converted = Input_Converted.size();
+
+            for(int X = 0; X < (Length_Converted / 2); X++)
+            {
+                if(Input_Converted[X] != Input_Converted[Length_Converted - 1 - X])
+                {
+                    Check = false;
+                }
+            }
+
+            return Check;
+        }
+};
