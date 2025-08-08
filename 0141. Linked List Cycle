@@ -1,0 +1,60 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 07-08-2025
+Platform    - Leet Code
+*/
+
+//0141. Linked List Cycle
+
+class Solution 
+{
+    public:
+        bool hasCycle(ListNode *Head) 
+        {
+            if(Head == nullptr)
+            {
+                return false;
+            }
+            else if(Head->next == nullptr)
+            {
+                return false;
+            }
+
+            ListNode* Runner_Fast = Head;
+            ListNode* Runner_Slow = Head;
+
+            bool Check = true;
+
+            do
+            {
+                Runner_Fast = Runner_Fast->next;
+
+                if(Runner_Fast == nullptr)
+                {
+                    Check = false;
+                    break;
+                }
+                else if(Runner_Fast == Runner_Slow)
+                {
+                    break;
+                }
+
+                Runner_Fast = Runner_Fast->next;
+
+                if(Runner_Fast == nullptr)
+                {
+                    Check = false;
+                    break;
+                }
+                else if(Runner_Fast == Runner_Slow)
+                {
+                    break;
+                }
+
+                Runner_Slow = Runner_Slow->next;
+            }
+            while(Runner_Fast != nullptr && Runner_Fast != Runner_Slow);
+
+            return Check;
+        }
+};
