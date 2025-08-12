@@ -1,0 +1,25 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 11-08-2025
+Platform    - Leet Code
+*/
+
+//0171. Excel Sheet Column Number
+
+class Solution 
+{
+    public:
+        int titleToNumber(string Column_Title) 
+        {
+            int Length = Column_Title.length();
+            int Column_Number = 0;
+
+            for(int X = 0; X < Length; X++)
+                {
+                    Column_Number *= 26;
+                    Column_Number += Column_Title[X] - 'A' + 1;
+                }
+
+            return Column_Number;
+        }
+};
