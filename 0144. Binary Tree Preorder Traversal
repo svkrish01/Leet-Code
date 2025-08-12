@@ -1,0 +1,42 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 08-08-2025
+Platform    - Leet Code
+*/
+
+//0144. Binary Tree Preorder Traversal
+
+class Solution 
+{
+    public:
+        vector<int> preorderTraversal(TreeNode* Root) 
+        {
+            if(Root == nullptr)
+            {
+                return {};
+            }
+            else
+            {
+                vector<int> Node_List;
+                
+                Preorder_List(&Node_List, Root);
+
+                return Node_List;
+            }
+        }
+
+        void Preorder_List(vector<int>* List, TreeNode* Node)
+        {
+            List->push_back(Node->val);
+            
+            if(Node->left != nullptr)
+            {
+                Preorder_List(List, Node->left);
+            }
+
+            if(Node->right != nullptr)
+            {
+                Preorder_List(List, Node->right);
+            }
+        }
+};
