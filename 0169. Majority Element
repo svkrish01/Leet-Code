@@ -1,0 +1,39 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 12-08-2025
+Platform    - Leet Code
+*/
+
+//0169. Majority Element
+
+class Solution 
+{
+    public:
+        int majorityElement(vector<int>& Numbers) 
+        {
+            int Max_Frequency = 0;
+
+            unordered_map<int, int> Frequency;
+            int Max_Number;
+
+            for(int X = 0; X < Numbers.size(); X++)
+            {
+                if(Frequency.find(Numbers[X]) == Frequency.end())
+                {
+                    Frequency[Numbers[X]] = 1;
+                }
+                else
+                {
+                    Frequency[Numbers[X]] += 1;
+                }
+
+                if(Frequency[Numbers[X]] > Max_Frequency)
+                {
+                    Max_Frequency = Frequency[Numbers[X]];
+                    Max_Number = Numbers[X];
+                }
+            }
+
+            return Max_Number;
+        }
+};
