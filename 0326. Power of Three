@@ -1,0 +1,41 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 12-08-2025
+Platform    - Leet Code
+*/
+
+//0326. Power of Three
+
+class Solution 
+{
+    public:
+        bool isPowerOfThree(int N) 
+        {
+            if(N == 0)
+            {
+                return false;
+            }
+            else
+            {
+                bool Check = true;
+                
+                if(N < 0)
+                {
+                    Check = false;
+                }
+
+                while(N > 1)
+                {
+                    if(N % 3 != 0)
+                    {
+                        Check = false;
+                        break;
+                    }
+
+                    N /= 3;
+                }
+
+                return Check;
+            }
+        }
+};
