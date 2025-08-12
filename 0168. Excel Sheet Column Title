@@ -1,0 +1,40 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 09-08-2025
+Platform    - Leet Code
+*/
+
+//0168. Excel Sheet Column Title
+
+class Solution 
+{
+    public:
+        string convertToTitle(int Column_Number) 
+        {
+            string Column_Title;
+
+            while(Column_Number > 0)
+            {
+                int X = Mod_Wrap(Column_Number, 26) - 1;
+                
+                Column_Title.insert(Column_Title.begin(), 'A' + X);
+
+                Column_Number -= Mod_Wrap(Column_Number, 26);
+                Column_Number /= 26;
+            }
+
+            return Column_Title;
+        }
+
+        int Mod_Wrap(int Dividend, int Modulus)
+        {
+            if(Dividend % Modulus == 0)
+            {
+                return 26;
+            }
+            else
+            {
+                return(Dividend % Modulus);
+            }
+        }
+};
