@@ -1,0 +1,41 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 11-08-2025
+Platform    - Leet Code
+*/
+
+//0231. Power of Two
+
+class Solution 
+{
+    public:
+        bool isPowerOfTwo(int N) 
+        {
+            if(N == 0)
+            {
+                return false;
+            }
+            else
+            {
+                bool Check = true;
+                
+                if(N < 0)
+                {
+                    Check = false;
+                }
+
+                while(N > 1)
+                {
+                    if(N % 2 != 0)
+                    {
+                        Check = false;
+                        break;
+                    }
+
+                    N /= 2;
+                }
+
+                return Check;
+            }
+        }
+};
