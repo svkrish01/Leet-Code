@@ -1,0 +1,60 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 15-08-2025
+Platform    - Leet Code
+*/
+
+//0704. Binary Search
+
+class Solution 
+{
+    public:
+        int search(vector<int>& Numbers, int Target) 
+        {
+            int Length = Numbers.size();
+            int Left = 0;
+            int Right = Length - 1;
+            int Centre = (Left + Right)/2;
+
+            if(Numbers[Left] == Target)
+            {
+                return Left;
+            }
+            else if(Numbers[Right] == Target)
+            {
+                return Right;
+            }
+            else if(Length == 1)
+            {
+                return -1;
+            }
+            else
+            {
+                while(Numbers[Centre] != Target)
+                {
+                    Centre = (Left + Right)/2;
+
+                    if(Left + 1 == Right)
+                    {
+                        Centre = -1;
+                        break;
+                    }
+
+                    if(Target > Numbers[Centre])
+                    {
+                        Left = Centre;
+                    }
+                    else if(Target < Numbers[Centre])
+                    {
+                        Right = Centre;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
+                return Centre;
+            }
+        }
+};
