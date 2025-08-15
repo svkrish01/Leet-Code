@@ -1,0 +1,49 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 15-08-2025
+Platform    - Leet Code
+*/
+
+//0202. Happy Number
+
+class Solution 
+{
+    public:
+        bool isHappy(int N) 
+        {
+            unordered_map <int, int> Squares;
+            bool Check = true;
+
+            Squares[N] = 1;
+
+            while(N != 1)
+            {
+                N = Sum_Squares(N);
+
+                if(Squares.find(N) == Squares.end())
+                {
+                    Squares[N] = 1;
+                }
+                else
+                {
+                    Check = false;
+                    break;
+                }
+            }
+
+            return Check;
+        }
+
+        int Sum_Squares(int N)
+        {
+            int Sum = 0;
+
+            while(N > 0)
+            {
+                Sum += (N%10)*(N%10);
+                N /= 10;
+            }
+
+            return Sum;
+        }
+};
