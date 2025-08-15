@@ -1,0 +1,31 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 14-08-2025
+Platform    - Leet Code
+*/
+
+//0226. Invert Binary Tree
+
+class Solution 
+{
+    public:
+        TreeNode* invertTree(TreeNode* Root) 
+        {
+            Invert_Node(Root);
+
+            return Root;
+        }
+
+        void Invert_Node(TreeNode* Node)
+        {
+            if(Node != nullptr)
+            {
+                Invert_Node(Node->left);
+                Invert_Node(Node->right);
+
+                TreeNode* Node_Temp = Node->left;
+                Node->left = Node->right;
+                Node->right = Node_Temp;
+            }
+        }
+};
