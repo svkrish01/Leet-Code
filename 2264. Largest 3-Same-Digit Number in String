@@ -1,0 +1,30 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 15-08-2025
+Platform    - Leet Code
+*/
+
+//2264. Largest 3-Same-Digit Number in String
+
+class Solution 
+    {
+    public:
+        string largestGoodInteger(string Number) 
+        {
+            int Length = Number.length();
+            string Max = "";
+
+            for(int X = 2; X < Length; X++)
+            {
+                if(Number[X] == Number[X-1] && Number[X-1] == Number[X-2])
+                {
+                    if(Number.substr(X-2, 3) > Max)
+                    {
+                        Max = Number.substr(X-2, 3);
+                    }
+                }
+            }
+
+            return Max;
+        }
+};
