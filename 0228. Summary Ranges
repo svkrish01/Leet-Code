@@ -1,0 +1,58 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 13-08-2025
+Platform    - Leet Code
+*/
+
+//0228. Summary Ranges
+
+class Solution 
+{
+    public:
+        vector<string> summaryRanges(vector<int>& Numbers) 
+        {
+            vector<string> Ranges;
+            
+            if(Numbers.size() == 0)
+            {
+                return Ranges;
+            }
+            else if(Numbers.size() == 1)
+            {
+                Ranges.push_back(to_string(Numbers[0]));
+            }
+            else
+            {
+                int Length = Numbers.size();
+                int Begin = Numbers[0];
+
+                for(int X = 1; X < Length; X++)
+                {
+                    if(Numbers[X-1] + 1 != Numbers[X])
+                    {
+                        if(Begin == Numbers[X-1])
+                        {
+                            Ranges.push_back(to_string(Begin));
+                        }
+                        else
+                        {
+                            Ranges.push_back(to_string(Begin) + "->" + to_string(Numbers[X-1]));
+                        }
+
+                        Begin = Numbers[X];
+                    }
+                }
+
+                if(Begin == Numbers[Length - 1])
+                {
+                    Ranges.push_back(to_string(Begin));
+                }
+                else
+                {
+                    Ranges.push_back(to_string(Begin) + "->" + to_string(Numbers[Length-1]));
+                }          
+            }
+
+            return Ranges;
+        }
+};
