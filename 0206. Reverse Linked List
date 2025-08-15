@@ -1,0 +1,43 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 15-08-2025
+Platform    - Leet Code
+*/
+
+//0206. Reverse Linked List
+
+class Solution 
+{
+    public:
+        ListNode* reverseList(ListNode* Head) 
+        {
+            if(Head == nullptr)
+            {
+                return Head;
+            }
+            else if(Head->next == nullptr)
+            {
+                return Head;
+            }
+            else
+            {
+                ListNode* Node_Prev = Head;
+                ListNode* Node_Curr = Head->next;
+                ListNode* Node_Next = Head->next->next;
+
+                Head->next = nullptr;
+
+                while(Node_Next != nullptr)
+                {
+                    Node_Curr->next = Node_Prev;
+
+                    Node_Prev = Node_Curr;
+                    Node_Curr = Node_Next;
+                    Node_Next = Node_Next->next;
+                }
+
+                Node_Curr->next = Node_Prev;
+                return Node_Curr;
+            }   
+        }
+};
