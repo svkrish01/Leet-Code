@@ -1,0 +1,61 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 15-08-2025
+Platform    - Leet Code
+*/
+
+//0257. Binary Tree Paths
+
+class Solution 
+{
+    public:
+        vector<string> binaryTreePaths(TreeNode* Root) 
+        {
+            vector<int> Path;
+            vector<string> Paths;
+            Map_Path(Root, Path, Paths);
+
+            return Paths;
+        }
+
+        void Map_Path(TreeNode* Node, vector<int>& Path, vector<string>& Paths)
+        {
+            Path.push_back(Node->val);
+
+            if(Node->left == nullptr && Node->right == nullptr)
+            {
+                Print_Path(Path, Paths);
+            }
+            else
+            {
+                if(Node->left != nullptr)
+                {
+                    Map_Path(Node->left, Path, Paths);
+                }
+
+                if(Node->right != nullptr)
+                {
+                    Map_Path(Node->right, Path, Paths);
+                }
+            }
+
+            Path.pop_back();
+        }
+
+        void Print_Path(vector<int>& Path, vector<string>& Paths)
+        {
+            int Length = Path.size();
+            string Temp = "";
+
+            for(int X = 0; X < Length-1; X++)
+            {
+                Temp += to_string(Path[X]);
+
+                Temp += "->";
+            }
+
+            Temp += to_string(Path[Length-1]);
+
+            Paths.push_back(Temp);
+        }
+};
