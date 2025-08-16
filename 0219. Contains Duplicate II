@@ -1,0 +1,41 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 15-08-2025
+Platform    - Leet Code
+*/
+
+//0219. Contains Duplicate II
+
+class Solution 
+{
+    public:
+        bool containsNearbyDuplicate(vector<int>& Numbers, int K) 
+        {
+            int Length = Numbers.size();
+            bool Check = false;
+            
+            unordered_map <int, int> Log;
+
+            for(int X = 0; X < Length; X++)
+                {
+                    if(Log.find(Numbers[X]) == Log.end())
+                    {
+                        Log[Numbers[X]] = X;
+                    }
+                    else
+                    {
+                        if(X - Log[Numbers[X]] <= K)
+                        {
+                            Check= true;
+                            break;
+                        }
+                        else
+                        {
+                            Log[Numbers[X]] = X;
+                        }
+                    }
+                }
+
+            return Check;
+        }
+};
