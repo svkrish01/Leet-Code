@@ -17,17 +17,17 @@ class Solution
             unordered_map<int, int> Log;
             
             for(int X = 0; X < Length; X++)
+            {
+                if(Log.find(Numbers[X]) == Log.end())
                 {
-                    if(Log.find(Numbers[X]) == Log.end())
-                    {
-                        Log[Numbers[X]] = 1;
-                    }
-                    else
-                    {
-                        Check = true;
-                        break;
-                    }
+                    Log[Numbers[X]] = 1;
                 }
+                else
+                {
+                    Check = true;
+                    break;
+                }
+            }
 
             return Check;
         }
