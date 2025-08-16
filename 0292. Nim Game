@@ -1,0 +1,23 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 16-08-2025
+Platform    - Leet Code
+*/
+
+//0292. Nim Game
+
+class Solution 
+{
+    public:
+        bool canWinNim(int N) 
+        {
+            bool Win = true;
+
+            if(N % 4 == 0)
+            {
+                Win = false;
+            }
+
+            return Win;
+        }
+};
