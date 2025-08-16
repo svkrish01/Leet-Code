@@ -1,0 +1,34 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 15-08-2025
+Platform    - Leet Code
+*/
+
+//0217. Contains Duplicate
+
+class Solution 
+{
+    public:
+        bool containsDuplicate(vector<int>& Numbers) 
+        {
+            int Length = Numbers.size();
+            bool Check = false; 
+
+            unordered_map<int, int> Log;
+            
+            for(int X = 0; X < Length; X++)
+                {
+                    if(Log.find(Numbers[X]) == Log.end())
+                    {
+                        Log[Numbers[X]] = 1;
+                    }
+                    else
+                    {
+                        Check = true;
+                        break;
+                    }
+                }
+
+            return Check;
+        }
+};
