@@ -1,0 +1,54 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 15-08-2025
+Platform    - Leet Code
+*/
+
+//0222. Count Complete Tree Nodes
+
+class Solution 
+{
+    public:
+        int countNodes(TreeNode* Root) 
+        {
+            if(Root == nullptr)
+            {
+                return 0;
+            }
+            else
+            {
+                int Counter = 0;
+                int Size = 0;
+                
+                queue <TreeNode*> Queue;
+                TreeNode* Current;
+                
+                Queue.push(Root);
+
+                while(Queue.empty() == false)
+                {
+                    Current = Queue.front();
+                    Counter++;
+
+                    if(Current->left == nullptr)
+                    {
+                        Size = (2*Counter) - 1;
+                        break;
+                    }
+                    else if(Current->right == nullptr)
+                    {
+                        Size = 2*Counter;
+                        break;
+                    }
+                    else
+                    {
+                        Queue.push(Current->left);
+                        Queue.push(Current->right);
+                        Queue.pop();
+                    }
+                }
+
+                return Size;
+            } 
+        }
+};
