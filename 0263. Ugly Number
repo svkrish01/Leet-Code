@@ -1,0 +1,45 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 15-08-2025
+Platform    - Leet Code
+*/
+
+//0263. Ugly Number
+
+class Solution 
+{
+    public:
+        bool isUgly(int N) 
+        {
+            if(N <= 0)
+            {
+                return false;
+            }
+            else
+            {
+                while(N%2 == 0)
+                {
+                    N /= 2;
+                }
+
+                while(N%3 == 0)
+                {
+                    N /= 3;
+                }
+
+                while(N%5 == 0)
+                {
+                    N /= 5;
+                }
+
+                if(N == 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }   
+        } 
+};
