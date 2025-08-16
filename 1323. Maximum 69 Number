@@ -1,0 +1,38 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 16-08-2025
+Platform    - Leet Code
+*/
+
+//1323. Maximum 69 Number
+
+class Solution 
+{
+    public:
+        int maximum69Number (int Number) 
+        {
+            int Copy = Number;
+            int Counter = 0;
+            int Position = -1;
+            
+            while(Copy > 0)
+            {
+                if(Copy % 10 == 6)
+                {
+                    Position= Counter;
+                }
+
+                Counter++;
+                Copy /= 10;
+            }
+
+            if(Position == -1)
+            {
+                return Number;
+            }
+            else
+            {
+                return Number + 3*pow(10, Position);
+            }
+        }
+};
