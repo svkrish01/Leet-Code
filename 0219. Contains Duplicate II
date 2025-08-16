@@ -17,24 +17,24 @@ class Solution
             unordered_map <int, int> Log;
 
             for(int X = 0; X < Length; X++)
+            {
+                if(Log.find(Numbers[X]) == Log.end())
                 {
-                    if(Log.find(Numbers[X]) == Log.end())
+                    Log[Numbers[X]] = X;
+                }
+                else
+                {
+                    if(X - Log[Numbers[X]] <= K)
                     {
-                        Log[Numbers[X]] = X;
+                        Check= true;
+                        break;
                     }
                     else
                     {
-                        if(X - Log[Numbers[X]] <= K)
-                        {
-                            Check= true;
-                            break;
-                        }
-                        else
-                        {
-                            Log[Numbers[X]] = X;
-                        }
+                        Log[Numbers[X]] = X;
                     }
                 }
+            }
 
             return Check;
         }
