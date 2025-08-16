@@ -1,0 +1,24 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 15-08-2025
+Platform    - Leet Code
+*/
+
+//0268. Missing Number
+
+class Solution 
+{
+    public:
+        int missingNumber(vector<int>& Numbers) 
+        {
+            int Length = Numbers.size();
+            int Sum = ((Length) * (Length+1))/2;
+
+            for(int X = 0; X < Length; X++)
+            {
+                Sum -= Numbers[X];
+            }
+
+            return Sum;
+        }
+};
