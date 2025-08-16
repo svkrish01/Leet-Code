@@ -1,0 +1,28 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 16-08-2025
+Platform    - Leet Code
+*/
+
+//3643. Flip Square Submatrix Vertically
+
+class Solution 
+{
+    public:
+        vector<vector<int>> reverseSubmatrix(vector<vector<int>>& Grid, int X, int Y, int K) 
+        {
+            int Temp;
+            
+            for(int I = X; I < X + (K/2); I++)
+            {
+                for(int J = Y; J < Y + K; J++)
+                {
+                    Temp = Grid[I][J];
+                    Grid[I][J] = Grid[2*X + K - I - 1][J];
+                    Grid[2*X + K - I - 1][J] = Temp;
+                }
+            }
+
+            return Grid;
+        }
+};
