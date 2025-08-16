@@ -1,0 +1,73 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 16-08-2025
+Platform    - Leet Code
+*/
+
+//0290. Word Pattern
+
+class Solution 
+{
+    public:
+        bool wordPattern(string Pattern, string S) 
+        {
+            int Length = Pattern.size();
+            bool Check = true;
+            
+            unordered_map <string, char> Cypher;
+            unordered_map <char, string> Code;
+            vector<string> Words;
+
+            Words = Word_List(S);
+
+            if(Words.size() != Pattern.size())
+            {
+                return false;
+            }
+
+            for(int X = 0; X < Length; X++)
+            {
+                if(Cypher.find(Words[X]) == Cypher.end() && Code.find(Pattern[X]) == Code.end())
+                {
+                    Cypher[Words[X]] = Pattern[X];
+                    Code[Pattern[X]] = Words[X];
+                }
+                else if(Cypher[Words[X]] != Pattern[X] || Code[Pattern[X]] != Words[X])
+                {
+                    Check = false;
+                    break;
+                }
+            }
+
+            return Check;
+        }
+
+        vector<string> Word_List(string S)
+        {
+            int Length = S.size();
+            string Temp = "";
+
+            vector<string> Words;
+
+            for(int X = 0; X < Length-1; X++)
+            {
+                if(S[X] != ' ' && S[X+1] != ' ')
+                {
+                    Temp += S[X];
+                }
+                else if(S[X] != ' ' && S[X+1] == ' ')
+                {
+                    Temp += S[X];
+                    
+                    Words.push_back(Temp);
+
+                    Temp = "";
+                }
+            }
+
+            Temp += S[Length-1];
+            Words.push_back(Temp);
+
+            return Words;
+        }
+};
