@@ -1,0 +1,91 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 17-08-2025
+Platform    - Leet Code
+*/
+
+//0345. Reverse Vowels of a String
+
+class Solution 
+{
+    public:
+        string reverseVowels(string S) 
+        {
+            int Length = S.size();
+    
+            vector<char> Vowels;
+            
+            for(int X = 0; X < Length; X++)
+            {
+                if(Vowel_Check(S[X]) == true) 
+                {
+                    Vowels.push_back(S[X]);
+                }
+            }
+
+            for(int X = 0; X < Length; X++)
+            {
+                if(Vowel_Check(S[X]) == true) 
+                {
+                    S[X] = Vowels.back();
+                    Vowels.pop_back();
+                }
+            }
+
+            return S;
+        }
+
+        bool Vowel_Check(char S)
+        {
+            bool Check = false;
+            
+            if(S >= 'a' && S <= 'z')
+            {
+                if(S == 'a')
+                {
+                    Check = true;
+                }
+                else if(S == 'e')
+                {
+                    Check = true;
+                }
+                else if(S == 'i')
+                {
+                    Check = true;
+                }
+                else if(S == 'o')
+                {
+                    Check = true;
+                }
+                else if(S == 'u')
+                {
+                    Check = true;
+                }
+            }
+            else if(S >= 'A' && S <= 'Z')
+            {
+                if(S == 'A')
+                {
+                    Check = true;
+                }
+                else if(S == 'E')
+                {
+                    Check = true;
+                }
+                else if(S == 'I')
+                {
+                    Check = true;
+                }
+                else if(S == 'O')
+                {
+                    Check = true;
+                }
+                else if(S == 'U')
+                {
+                    Check = true;
+                }
+            }
+
+            return Check;
+        }
+};
