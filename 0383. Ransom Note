@@ -1,0 +1,52 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 17-08-2025
+Platform    - Leet Code
+*/
+
+//0383. Ransom Note
+
+class Solution 
+{
+    public:
+        bool canConstruct(string Ransom_Note, string Magazine) 
+        {
+            bool Check = true;
+            int Length_1 = Ransom_Note.size();
+            int Length_2 = Magazine.size();
+            
+            unordered_map <char, int> Frequency;
+
+            for(int X = 0; X < Length_2; X++)
+            {
+                if(Frequency.find(Magazine[X]) == Frequency.end())    
+                {
+                    Frequency[Magazine[X]] = 1;
+                }
+                else
+                {
+                    Frequency[Magazine[X]]++;
+                }
+            }
+
+            for(int X = 0; X < Length_1; X++)
+            {
+                if(Frequency.find(Ransom_Note[X]) == Frequency.end())    
+                {
+                    Check = false;
+                    break;
+                }
+                else if(Frequency[Ransom_Note[X]] == 0)
+                {
+                    Check = false;
+                    break;
+                }
+                else
+                {
+                    Frequency[Ransom_Note[X]]--;
+                }
+            }
+
+            return Check;
+        }
+};
