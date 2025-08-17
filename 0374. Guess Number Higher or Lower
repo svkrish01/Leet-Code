@@ -1,0 +1,42 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 17-08-2025
+Platform    - Leet Code
+*/
+
+//0374. Guess Number Higher or Lower
+
+class Solution 
+{
+    public:
+        int guessNumber(int N) 
+        {
+            long Left = 0;
+            long Right = (long)N+1;
+            long Centre = (Left + Right)/2;
+
+            int Check;
+            
+            while(guess(Centre) != 0)
+            {
+                Centre = (Left + Right)/2;
+
+                Check = guess(Centre);
+
+                if(Check == 0)
+                {
+                    break;
+                }
+                else if(Check > 0)
+                {
+                    Left = Centre;
+                }
+                else
+                {
+                    Right = Centre;
+                }
+            }
+
+            return Centre;
+        }
+};
