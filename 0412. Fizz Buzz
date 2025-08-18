@@ -1,0 +1,41 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 18-08-2025
+Platform    - Leet Code
+*/
+
+//0412. Fizz Buzz
+
+class Solution 
+{
+    public:
+        vector<string> fizzBuzz(int N) 
+        {
+            vector<string> Answer(N, "");
+            
+            for(int X = 1; X <= N; X++)
+            {
+                if(X % 3 == 0)
+                {
+                    if(X % 5 == 0)
+                    {
+                        Answer[X-1] = "FizzBuzz";
+                    }
+                    else
+                    {
+                        Answer[X-1] = "Fizz";
+                    }
+                }
+                else if(X % 5 == 0)
+                {
+                    Answer[X-1] = "Buzz";
+                }
+                else
+                {
+                    Answer[X-1] = to_string(X);
+                }
+            }
+    
+            return Answer;
+        }
+};
