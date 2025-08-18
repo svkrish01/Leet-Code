@@ -1,0 +1,52 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 18-08-2025
+Platform    - Leet Code
+*/
+
+//0234. Palindrome Linked List
+
+class Solution 
+{
+    public:
+        bool isPalindrome(ListNode* Head) 
+        {
+            ListNode* Runner = Head;
+            int Length = 0;
+
+            while(Runner != nullptr)
+            {
+                Runner = Runner->next;
+                Length++;
+            }
+
+            if(Length == 0)
+            {
+                return true;
+            }
+            else
+            {
+                vector<int> Forward(Length, 0);
+                vector<int> Backward(Length, 0);
+
+                Runner = Head;
+
+                for(int X = 0; X < Length; X++)
+                {
+                    Forward[X] = Runner->val;
+                    Backward[Length - 1- X] = Runner->val;
+
+                    Runner = Runner->next;
+                } 
+
+                if(Forward == Backward)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+};
