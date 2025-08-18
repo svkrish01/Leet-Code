@@ -1,0 +1,44 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 18-08-2025
+Platform    - Leet Code
+*/
+
+//0409. Longest Palindrome
+
+class Solution 
+{
+    public:
+        int longestPalindrome(string String) 
+        {
+            int Length = String.size();
+            int Palindrome_Even = 0;
+            int Palindrome_Odd = 0;
+            
+            vector<int> Frequency(52, 0);
+    
+            for(int X = 0; X < Length; X ++)
+            {
+                if(String[X] >= 'a')
+                {    
+                    Frequency[String[X] - 'a']++;
+                }
+                else
+                {
+                    Frequency[String[X] - 'A' + 26]++;
+                }
+            } 
+    
+            for(int X = 0; X < 52; X++)
+            {
+                Palindrome_Even += Frequency[X] / 2;
+    
+                if(Palindrome_Odd == 0)
+                {
+                    Palindrome_Odd = Frequency[X] % 2;
+                }
+            }
+    
+            return (Palindrome_Even * 2) + Palindrome_Odd;
+        }
+};
