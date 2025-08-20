@@ -1,0 +1,52 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 20-08-2025
+Platform    - Leet Code
+*/
+
+//0837. New 21 Game
+
+class Solution 
+{
+    public:
+        double new21Game(int N, int K, int Max_Pts) 
+        {
+            if(K == 0)
+            {
+                return 1.0;
+            }
+            else
+            {
+                vector<double> Probability (K + Max_Pts, 0.0);
+                double Window_Sum = 1.0;
+                double Probability_Sum = 0.0;
+
+                Probability[0] = 1.0;
+
+                for(int X = 1; X < K + Max_Pts; X++)
+                {
+                    Probability[X] += Window_Sum / Max_Pts;
+
+                    if(X >= Max_Pts)
+                    {
+                        Window_Sum -= Probability[X - Max_Pts];
+                    }
+
+                    if(X < K)
+                    {
+                        Window_Sum += Probability[X];
+                    }
+                }
+
+                if(N >= K)
+                {
+                    for(int X = K; X <= min(N, (K + Max_Pts) - 1); X++)
+                    {
+                        Probability_Sum += Probability[X];
+                    }
+                }
+
+                return Probability_Sum;
+            }
+        }
+};
