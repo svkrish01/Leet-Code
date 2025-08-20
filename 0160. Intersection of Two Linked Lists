@@ -1,0 +1,66 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 20-08-2025
+Platform    - Leet Code
+*/
+
+//0160. Intersection of Two Linked Lists
+
+class Solution 
+{
+    public:
+        ListNode* getIntersectionNode(ListNode* Head_A, ListNode *Head_B) 
+        {
+            
+            ListNode* Runner_A = Head_A;
+            ListNode* Runner_B = Head_B;
+            int Length_A = 0;
+            int Length_B = 0;
+
+            ListNode* Intersection;
+            int Difference;
+
+            while(Runner_A != nullptr)
+            {
+                Length_A++;
+                Runner_A = Runner_A->next;
+            }
+
+            while(Runner_B != nullptr)
+            {
+                Length_B++;
+                Runner_B = Runner_B->next;
+            }
+
+            Runner_A = Head_A;
+            Runner_B = Head_B;
+
+            Difference = abs(Length_A - Length_B);
+
+            if(Difference > 0)
+            {
+                if(Length_A > Length_B)
+                {
+                    for(int X = 0; X < Difference; X++)
+                    {
+                        Runner_A = Runner_A->next;
+                    }
+                }
+                else
+                {
+                    for(int X = 0; X < Difference; X++)
+                    {
+                        Runner_B = Runner_B->next;
+                    }
+                }
+            }
+
+            while(Runner_A != Runner_B)
+            {
+                Runner_A = Runner_A->next;
+                Runner_B = Runner_B->next;
+            }
+
+            return Runner_A;
+        }
+};
