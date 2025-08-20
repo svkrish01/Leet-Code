@@ -1,0 +1,36 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 20-08-2025
+Platform    - Leet Code
+*/
+
+//1277. Count Square Submatrices with All Ones
+
+class Solution 
+{
+    public:
+        int countSquares(vector<vector<int>>& Matrix) 
+        {
+            int Rows = Matrix.size();
+            int Columns = Matrix[1].size();
+            int Sum = 0;
+
+            for(int I = 0; I < Rows; I++)
+            {
+                for(int J = 0; J < Columns; J++)
+                {
+                    if(Matrix[I][J] != 0)
+                    {
+                        if(I > 0 && J > 0)
+                        {
+                            Matrix[I][J] += min(Matrix[I][J-1], min(Matrix[I-1][J], Matrix[I-1][J-1]));
+                        }
+
+                        Sum += Matrix[I][J];
+                    }
+                }
+            }
+
+            return Sum;
+        }
+};
