@@ -1,0 +1,45 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 21-08-2025
+Platform    - Leet Code
+*/
+
+//0242. Valid Anagram
+
+class Solution 
+    {
+    public:
+        bool isAnagram(string S, string T) 
+        {
+            int Length_1 = S.size();
+            int Length_2 = T.size();
+            
+            if(Length_1 != Length_2)
+            {
+                return false;
+            }
+            else
+            {
+                vector<int> Frequency (26, 0);
+                bool Check = true;
+
+                for(int X = 0; X < Length_1; X++)
+                {
+                    Frequency[S[X] - 'a']++;
+                }
+
+                for(int X = 0; X < Length_1; X++)
+                {
+                    if(Frequency[T[X] - 'a'] == 0)
+                    {
+                        Check = false;
+                        break;
+                    }
+
+                    Frequency[T[X] - 'a']--;
+                }
+
+                return Check;
+            }
+        }
+};
