@@ -1,0 +1,68 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 21-08-2025
+Platform    - Leet Code
+*/
+
+//1504. Count Submatrices With All Ones
+
+class Solution 
+    {
+    public:
+        int numSubmat(vector<vector<int>>& Matrix) 
+        {
+            int Rows = Matrix.size();
+            int Columns = Matrix[0].size();
+            int Count = 0;
+
+            for(int X = 0; X < Rows; X++)
+            {
+                for(int Y = 0; Y < Columns; Y++)
+                {
+                    if(Matrix[X][Y] > 0)
+                    {
+                        Matrix[X][Y] *= 1001;
+
+                        if(X > 0)
+                        {
+                            if(Y > 0)
+                            {
+                                Matrix[X][Y] += (Matrix[X-1][Y] / 1000) * 1000;
+                                Matrix[X][Y] += Matrix[X][Y-1] % 1000;
+                            }
+                            else
+                            {
+                                Matrix[X][Y] += (Matrix[X-1][Y] / 1000) * 1000;
+                            }
+                        }
+                        else
+                        {
+                            if(Y > 0)
+                            {
+                                Matrix[X][Y] += Matrix[X][Y-1] % 1000;
+                            }
+                        }
+
+                        int Diagonal = min(Matrix[X][Y] % 1000, Matrix[X][Y] / 1000);
+                        int Rows_Min = (Matrix[X][Y] / 1000) + 1;
+                        int Columns_Min = (Matrix[X][Y] % 1000) + 1;
+
+                        for(int Z = 0; Z < Diagonal; Z++)
+                        {
+                            Rows_Min = min(Rows_Min - 1, Matrix[X-Z][Y-Z] / 1000);
+                            Columns_Min = min(Columns_Min - 1, Matrix[X-Z][Y-Z] % 1000);
+                            
+                            if(Rows_Min > 0 && Columns_Min > 0)
+                            {
+                                Count += Rows_Min;
+                                Count += Columns_Min;
+                                Count--;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return Count;
+        }
+};
