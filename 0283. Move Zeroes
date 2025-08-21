@@ -1,0 +1,28 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 21-08-2025
+Platform    - Leet Code
+*/
+
+//0283. Move Zeroes
+
+class Solution 
+{
+    public:
+        void moveZeroes(vector<int>& Numbers) 
+        {
+            int Length = Numbers.size();
+
+            for(int X = 0; X < Length; X++)
+            {
+                if(Numbers[X] == 0)
+                {
+                    Numbers.erase(Numbers.begin() + X);
+                    Numbers.push_back(0);
+
+                    Length--;
+                    X--;
+                }
+            }
+        }
+};
