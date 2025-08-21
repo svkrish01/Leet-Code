@@ -1,0 +1,30 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 21-08-2025
+Platform    - Leet Code
+*/
+
+//0338. Counting Bits
+
+class Solution 
+{
+    public:
+        vector<int> countBits(int N) 
+        {
+            vector<int> Bits (N + 1, 0);
+
+            for(int X = 0; X <= N; X++)
+            {
+                int Y = X;
+
+                while(Y > 0)
+                {
+                    Bits[X] += Y & 1;
+
+                    Y = Y >> 1;
+                }
+            }
+
+            return Bits;
+        }
+};
