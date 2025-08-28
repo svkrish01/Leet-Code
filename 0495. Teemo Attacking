@@ -1,0 +1,39 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 28-08-2025
+Platform    - Leet Code
+*/
+
+//0495. Teemo Attacking
+
+class Solution 
+{
+    public:
+        int findPoisonedDuration(vector<int>& Time_Series, int Duration) 
+        {
+            int Length = Time_Series.size();
+
+            if(Length == 1)
+            {
+                return Duration;
+            }
+            else
+            {
+                int Time = 0;
+
+                for(int X = 0; X < Length-1; X++)
+                {
+                    if(Time_Series[X] + Duration >= Time_Series[X+1])
+                    {
+                        Time += (Time_Series[X+1] - Time_Series[X]);
+                    }
+                    else
+                    {
+                        Time += Duration;
+                    }
+                }
+
+                return (Time + Duration);
+            }  
+        }
+};
