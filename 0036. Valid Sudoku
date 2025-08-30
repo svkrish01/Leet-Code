@@ -13,110 +13,41 @@ class Solution
         {
             bool Valid = true;
 
-            vector<int> Check (9, 0);
-            vector<int> Temp (9, 0);
+            vector<vector<int>> Columns (9, vector<int>(9, 0));
+            vector<vector<int>> Rows (9, vector<int>(9, 0));
+            vector<vector<int>> Blocks (9, vector<int>(9, 0));
 
-            if(Valid == true) 
-            {
-                for(int X = 0; X < 9; X++)
-                {
-                    Temp = Check;
-
-                    for(int Y = 0; Y < 9; Y++)
-                    {
-                        if(Board[X][Y] > '0')
-                        {
-                            if(Temp[Board[X][Y] - '1'] == 0)
-                            {
-                                Temp[Board[X][Y] - '1'] = 1;
-                            }
-                            else
-                            {
-                                Valid = false;
-                                break;
-                            }
-                        }
-                    }
-                
-
-                    if(Valid == false)
-                    {
-                        break;
-                    }
-                }
-            }
-
-            if(Valid == true) 
+            
+            for(int X = 0; X < 9; X++)
             {
                 for(int Y = 0; Y < 9; Y++)
                 {
-                    Temp = Check;
-                        
-                    for(int X = 0; X < 9; X++)
+                    if(Board[X][Y] == '.')
                     {
-                        if(Board[X][Y] > '0')
-                        {
-                            if(Temp[Board[X][Y] - '1'] == 0)
-                            {
-                                Temp[Board[X][Y] - '1'] = 1;
-                            }
-                            else
-                            {
-                                Valid = false;
-                                break;
-                            }
-                        }
+                        continue;
                     }
-
-                    if(Valid == false)
+                    else
                     {
-                        break;
-                    }
-                }
-            }
+                        int Temp = Board[X][Y] - '1';
+                        int Block = (Y / 3) + ((X / 3) * 3);
 
-            if(Valid == true) 
-            {
-                for(int X = 0; X < 3; X++)
-                {                        
-                    for(int Y = 0; Y < 3; Y++)
-                    {
-                        Temp = Check;
-
-                        for(int I = 0; I < 3; I++)
+                        if(Columns[Y][Temp] == 1 || Rows[X][Temp] == 1 || Blocks[Block][Temp] == 1)
                         {
-                            for(int J = 0; J < 3; J++)
-                            {
-                                if(Board[(3*X) + I][(3*Y) + J] > '0')
-                                {
-                                    if(Temp[Board[(3*X) + I][(3*Y) + J] - '1'] == 0)
-                                    {
-                                        Temp[Board[(3*X) + I][(3*Y) + J] - '1'] = 1;
-                                    }
-                                    else
-                                    {
-                                        Valid = false;
-                                        break;
-                                    }
-                                }
-                            }
-
-                            if(Valid == false)
-                            {
-                                break;
-                            }
-                        }
-
-                        if(Valid == false)
-                        {
+                            Valid = false;
                             break;
                         }
+                        else
+                        {
+                            Columns[Y][Temp] = 1;
+                            Rows[X][Temp] = 1;
+                            Blocks[Block][Temp] = 1;
+                        }
                     }
+                }
 
-                    if(Valid == false)
-                    {
-                        break;
-                    }
+                if(Valid == false)
+                {
+                    break;
                 }
             }
 
