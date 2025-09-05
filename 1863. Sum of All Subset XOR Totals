@@ -1,0 +1,41 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 04-09-2025
+Platform    - Leet Code
+*/
+
+//1863. Sum of All Subset XOR Totals
+
+class Solution 
+{
+    public:
+        int subsetXORSum(vector<int>& Nums) 
+        {
+            int Length = Nums.size();
+            int Sum = 0;
+    
+            vector<int> Count (5, 0);
+    
+            for(int X = 0; X < 5; X++)
+            {
+                for(int Y = 0; Y < Length; Y++)   
+                {
+                    Count[X] += Nums[Y] & 1;
+    
+                    Nums[Y] >>= 1;
+                }
+            }
+    
+            for(int X = 4; X >= 0; X--)
+            {
+                Sum <<= 1;
+    
+                if(Count[X] > 0)
+                {
+                    Sum += (pow(2, Length - Count[X])) * (pow(2, Count[X] - 1));
+                }
+            }
+    
+            return Sum;
+        }
+};
