@@ -1,0 +1,58 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 15-09-2025
+Platform    - Leet Code
+*/
+
+//1935. Maximum Number of Words You Can Type
+
+class Solution 
+{
+    public:
+        int canBeTypedWords(string Text, string Broken_Letters) 
+        {
+            vector<int> Broken (26, 0);
+            int Length_T = Text.size();
+            int Length_L = Broken_Letters.size();
+            int Check = 1;
+            int Count = 0;
+
+            for(int X = 0; X < Length_L; X++)
+            {
+                Broken[Broken_Letters[X] - 'a'] = 1;
+            }
+
+            for(int X = 0; X < Length_T - 1; X++)
+            {
+                if(Text[X] != ' ')
+                {
+                    if(Broken[Text[X] - 'a'] == 1)
+                    {
+                        Check = 0;
+                    }
+
+                    if(Text[X+1] == ' ')
+                    {
+                        if(Check == 1)
+                        {
+                            Count++;
+                        }
+                        else
+                        {
+                            Check = 1;
+                        }
+                    }
+                }
+            }
+
+            if(Text[Length_T-1] != ' ')
+            {
+                if(Check == 1 && Broken[Text[Length_T-1] - 'a'] == 0)
+                {
+                    Count++;
+                }
+            }
+
+            return Count;
+        }
+};
