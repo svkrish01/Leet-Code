@@ -1,0 +1,60 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 19-08-2025
+Platform    - Leet Code
+*/
+
+//0007. Reverse Integer
+
+class Solution 
+    {
+    public:
+        int reverse(int X) 
+        {
+            if(X == 0 || X == -2147483648)
+            {
+                return 0;
+            }
+            else 
+            {
+                int Num = 0;
+                
+                if(X > 0)
+                {
+                    while(X > 0)
+                    {
+                        if(Num > 214748364)
+                        {
+                            Num = 0;
+                            break;
+                        }
+                        
+                        Num *= 10;
+                        Num += X % 10;
+                        X /= 10;
+                    }
+                }
+                else
+                {
+                    X *= -1;
+
+                    while(X > 0)
+                    {
+                        if(Num > 214748364)
+                        {
+                            Num = 0;
+                            break;
+                        }
+                        
+                        Num *= 10;
+                        Num += X % 10;
+                        X /= 10;
+                    }
+
+                    Num *= -1;
+                }
+                
+                return Num;
+            }
+        }
+};
