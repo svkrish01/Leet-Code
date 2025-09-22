@@ -1,0 +1,70 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 19-08-2025
+Platform    - Leet Code
+*/
+
+//0005. Longest Palindromic Substring
+
+class Solution 
+{
+    public:
+        string longestPalindrome(string S) 
+        {
+            int Length = S.size();
+            int Size = Length - 1;
+            int Check = 0;
+
+            string Sub_String;
+
+            while(Size > 0)
+            {
+                for(int X = 0; X < Length - Size; X++)
+                {
+                    if(S[X] == S[X + Size])
+                    {
+                        Sub_String = S.substr(X, Size+1);
+                        Check = Check_Palindrome(Sub_String);
+
+                        if(Check == 1)
+                        {
+                            break;
+                        }
+                    }
+                }
+
+                if(Check == 1)
+                {
+                    break;
+                }
+
+                Size--;
+            }
+
+            if(Size == 0)
+            {
+                return S.substr(0, 1);
+            }
+            else
+            {
+                return Sub_String;
+            }
+        }
+
+        int Check_Palindrome(string String)
+        {
+            int Length = String.size();
+            int Check = 1;
+            
+            for(int X = 0; X < (Length/2); X++)
+            {
+                if(String[X] != String[Length - X - 1])
+                {
+                    Check = 0;
+                    break;
+                }
+            }
+
+            return Check;
+        }
+};
