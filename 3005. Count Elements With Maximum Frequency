@@ -1,0 +1,37 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 22-09-2025
+Platform    - Leet Code
+*/
+
+//3005. Count Elements With Maximum Frequency
+
+class Solution 
+{
+    public:
+        int maxFrequencyElements(vector<int>& Nums) 
+        {
+            int Length = Nums.size();
+            int Count = 0;
+            int Max = 0;
+            vector<int> Frequency (101, 0);
+
+            for(int X = 0; X < Length; X++)
+            {
+                Frequency[Nums[X]]++;
+
+                if(Frequency[Nums[X]] == Max)
+                {
+                    Count++;
+                }
+                else if(Frequency[Nums[X]] > Max)
+                {
+                    Max = Frequency[Nums[X]];
+
+                    Count = 1;
+                }
+            }
+
+            return (Max * Count);
+        }
+};
