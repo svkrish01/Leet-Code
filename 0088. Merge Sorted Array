@@ -1,0 +1,49 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 21-10-2025
+Platform    - Leet Code
+*/
+
+//0088. Merge Sorted Array
+
+class Solution 
+{
+    public:
+        void merge(vector<int>& Nums_1, int Size_1, vector<int>& Nums_2, int Size_2) 
+        {
+            int Counter_1 = Size_1;
+            int Counter_2 = Size_2;
+
+            while(Size_1 + Size_2 > 0)
+            {
+                if(Size_1 > 0 && Size_2 > 0)
+                {
+                    if(Nums_1[Size_1 - 1] > Nums_2[Size_2 - 1])
+                    {
+                        Nums_1[Size_1 + Size_2 - 1] = Nums_1[Size_1 - 1];
+
+                        Size_1--;
+                    }
+                    else
+                    {
+                        Nums_1[Size_1 + Size_2 - 1] = Nums_2[Size_2 - 1];
+
+                        Size_2--;
+                    }
+                }
+                else
+                {
+                    if(Size_2 > 0)
+                    {
+                        Nums_1[Size_2 - 1] = Nums_2[Size_2 - 1];
+
+                        Size_2--;
+                    }
+                    else
+                    {
+                        Size_1 = 0;
+                    }
+                }
+            }
+        }
+};
