@@ -1,0 +1,35 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 07-11-2025
+Platform    - Leet Code
+*/
+
+//1832. Check if the Sentence Is Pangram
+
+class Solution 
+{
+    public:
+        bool checkIfPangram(string Sentence) 
+        {
+            int Length = Sentence.size();
+            bool Check = true;
+
+            vector<int> Alphabets(26, 0);
+
+            for(int X = 0; X < Length; X++)
+            {
+                Alphabets[Sentence[X] - 'a']++;
+            }
+
+            for(int X = 0; X < 26; X++)
+            {
+                if(Alphabets[X] == 0)
+                {
+                    Check = false;
+                    break;
+                }
+            }
+
+            return Check;
+        }
+};
