@@ -1,0 +1,37 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 07-11-2025
+Platform    - Leet Code
+*/
+
+//2124. Check if All A's Appears Before All B's
+
+
+class Solution 
+{
+    public:
+        bool checkString(string String) 
+        {
+            bool Check = true;
+            bool Occur = false;
+            int Length = String.size();
+
+            for(int X = 0; X < Length; X++)
+            {
+                if(String[X] == 'a')
+                {
+                    if(Occur)
+                    {
+                        Check = false;
+                        break;
+                    }
+                }
+                else
+                {
+                    Occur = true;
+                }
+            }
+
+            return Check;
+        }
+};
