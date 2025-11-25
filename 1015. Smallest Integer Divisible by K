@@ -1,0 +1,30 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 25-11-2025
+Platform    - Leet Code
+*/
+
+//1015. Smallest Integer Divisible by K
+
+class Solution 
+{
+    public:
+        int smallestRepunitDivByK(int K) 
+        {
+            int Remainder = 0;
+            int Counter = K;
+
+            while(Counter)
+            {
+                Remainder = ((Remainder * 10) + 1) % K;
+                Counter--;
+
+                if(Remainder == 0)
+                {
+                    return (K - Counter);
+                }
+            }
+
+            return -1;
+        }
+};
