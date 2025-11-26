@@ -1,0 +1,33 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 26-11-2025
+Platform    - Leet Code
+*/
+
+//0589. N-ary Tree Preorder Traversal
+
+class Solution 
+{
+    public:
+        vector<int> preorder(Node* Root) 
+        {
+            vector<int> Order;
+
+            Explore(Order, Root);
+
+            return Order;
+        }
+
+        void Explore(vector<int> &Order, Node* Node)
+        {
+            if(Node != nullptr)
+            {
+                Order.push_back(Node->val);
+
+                for(auto Child : Node->children)
+                {
+                    Explore(Order, Child);
+                }
+            }
+        }
+};
