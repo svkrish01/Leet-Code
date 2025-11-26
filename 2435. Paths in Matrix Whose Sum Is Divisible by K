@@ -1,0 +1,53 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 26-11-2025
+Platform    - Leet Code
+*/
+
+//2435. Paths in Matrix Whose Sum Is Divisible by K
+
+class Solution 
+{
+    public:
+        int numberOfPaths(vector<vector<int>>& Grid, int K) 
+        {
+            int M = Grid.size();
+            int N = Grid[0].size();
+
+            vector<vector<vector<int>>> Data(M, vector<vector<int>>(N , vector<int>(K, 0)));
+            int Temp;
+
+            for(int X = 0; X < M; X++)
+            {
+                for(int Y = 0; Y < N; Y++)
+                {
+                    Temp = Grid[X][Y] % K;
+
+                    if(X == 0 && Y == 0)
+                    {
+                        Data[X][Y][Temp] = 1;
+                    }
+
+                    else
+                    {
+                        for(int Z = 0; Z < K; Z++)
+                        {
+                            if(X > 0)
+                            {
+                                Data[X][Y][Z] += Data[X-1][Y][(Z + K - Temp) % K];
+                            }
+                            if(Y > 0)
+                            {
+                                Data[X][Y][Z] += Data[X][Y-1][(Z + K - Temp) % K];
+                            }
+
+                            Data[X][Y][Z] %= 1000000007;
+                        }
+                    }
+                }
+
+            }
+
+            return Data[M-1][N-1][0];
+        }
+};
