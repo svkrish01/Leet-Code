@@ -1,0 +1,39 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 27-11-2025
+Platform    - Leet Code
+*/
+
+//0559. Maximum Depth of N-ary Tree
+
+class Solution 
+{
+    public:
+        int maxDepth(Node* Root) 
+        {
+            int Depth = 0;
+            int Max = 0;
+
+            Explore(Root, Depth, &Max);
+
+            return Max;        
+        }
+
+        void Explore(Node* Node, int Depth, int* Max)
+        {
+            if(Node != nullptr)
+            {
+                Depth += 1;
+
+                if(*Max < Depth)
+                {
+                    *Max = Depth;
+                }
+
+                for(auto Child : Node->children)
+                {
+                    Explore(Child, Depth, Max);
+                }
+            }
+        }
+};
