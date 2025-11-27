@@ -1,0 +1,52 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 27-11-2025
+Platform    - Leet Code
+*/
+
+//3381. Maximum Subarray Sum With Length Divisible by K
+
+class Solution 
+{
+    public:
+        long long maxSubarraySum(vector<int>& Nums, int K) 
+        {
+            long long Max = LLONG_MIN;
+            long long Sum = 0;
+            int Length = Nums.size();
+            
+            vector<long long> Pre_Sum;
+            vector<long long> Sub_Sum;
+
+            Pre_Sum.push_back(Sum);
+
+            for(int X = 0; X < Length; X++)
+            {
+                Sum += Nums[X];
+
+                Pre_Sum.push_back(Sum);
+            }
+
+            for(int X = K; X <= Length; X++)
+            {
+                long long Temp = Pre_Sum[X] - Pre_Sum[X - K];
+
+                if(X >= 2 * K)
+                {
+                    if(Sub_Sum[X - (2 * K)] > 0)
+                    {
+                        Temp += Sub_Sum[X - (2 * K)];
+                    }
+                }
+
+                if(Temp > Max)
+                {
+                    Max = Temp;
+                }
+
+                Sub_Sum.push_back(Temp);
+            }
+
+            return Max;
+        }
+};
