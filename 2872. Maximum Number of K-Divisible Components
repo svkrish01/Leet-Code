@@ -1,0 +1,54 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 28-11-2025
+Platform    - Leet Code
+*/
+
+//2872. Maximum Number of K-Divisible Components
+
+class Solution 
+{
+    public:
+        int maxKDivisibleComponents(int N, vector<vector<int>>& Edges, vector<int>& Values, int K) 
+        {
+            vector<int> Explored(N, 0);
+            int Count = 0;
+            int Root = 0;
+            int Sum = 0;        
+
+            vector<vector<int>> Neighbours(N);
+
+            for(int X = 0; X < N-1; X++)
+            {
+                Neighbours[Edges[X][0]].push_back(Edges[X][1]);
+
+                Neighbours[Edges[X][1]].push_back(Edges[X][0]);
+            }
+
+            Sum = Explore(Root, Values, Neighbours, Explored, K, &Count);
+
+            return Count;
+        }
+
+        int Explore(int Node, vector<int>& Values, vector<vector<int>>& Neighbours, vector<int>& Explored, int K, int* Count)
+        {
+            int Sum = Values[Node];
+
+            Explored[Node] = 1;
+
+            for(int X : Neighbours[Node])
+            {
+                if(Explored[X] == 0)
+                {
+                    Sum += Explore(X, Values, Neighbours, Explored, K, Count);
+                }
+            }
+
+            if(Sum % K == 0)
+            {
+                *Count += 1;
+            }
+
+            return Sum % K;
+        }
+};
