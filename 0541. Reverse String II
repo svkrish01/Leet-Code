@@ -1,0 +1,40 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 29-11-2025
+Platform    - Leet Code
+*/
+
+//0541. Reverse String II
+
+class Solution 
+{
+    public:
+        string reverseStr(string S, int K) 
+        {
+            int Length = S.length();
+            string Final = "";
+            string Temp = "";
+
+            for(int X = 0; X < Length; X++) 
+            {
+                if(X % (2 * K) < K)
+                {
+                    Temp = S[X] + Temp;
+                }
+                else
+                {
+                    Final += Temp;
+                    Temp = "";
+
+                    Final += S[X];
+                }
+            }  
+
+            if(Length % (2 * K) != 0 && Length % (2 * K) <= K)  
+            {
+                Final += Temp;
+            }   
+
+            return Final;
+        }
+};
