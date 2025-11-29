@@ -1,0 +1,23 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 29-11-2025
+Platform    - Leet Code
+*/
+
+//3512. Minimum Operations to Make Array Sum Divisible by K
+
+class Solution 
+{
+    public:
+        int minOperations(vector<int>& Nums, int K) 
+        {
+            int Sum = 0;
+
+            for(int Temp : Nums)
+            {
+                Sum += Temp;
+            }
+
+            return Sum % K;
+        }
+};
