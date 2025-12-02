@@ -1,0 +1,48 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 02-12-2025
+Platform    - Leet Code
+*/
+
+//3623. Count Number of Trapezoids I
+
+class Solution 
+{
+    public:
+        int countTrapezoids(vector<vector<int>>& Points) 
+        {
+            long long Count = 0;
+            long long Sum = 0;
+            int Length = Points.size();
+
+            unordered_map<int, int> Ordinate;
+            vector<int> Ordinates;
+
+            for(int X = 0; X < Length; X++)
+            {
+                if(Ordinate.find(Points[X][1]) == Ordinate.end())
+                {
+                    Ordinate[Points[X][1]] = 1;
+
+                    Ordinates.push_back(Points[X][1]);
+                }
+                else
+                {
+                    Ordinate[Points[X][1]]++;
+                }
+            }
+
+            for(int X : Ordinates)
+            {
+                long long Temp = Ordinate[X];
+                Temp = (Temp * (Temp - 1)) / 2;
+
+                Count += Temp * Sum;
+                Count %= 1000000007;
+
+                Sum += Temp;
+            }
+
+            return Count;
+        }
+};
