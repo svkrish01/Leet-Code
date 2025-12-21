@@ -1,0 +1,54 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 21-12-2025
+Platform    - Leet Code
+*/
+
+//0955. Delete Columns to Make Sorted II
+
+class Solution 
+{
+    public:
+        int minDeletionSize(vector<string>& Strings) 
+        {
+            int Count = 0;
+            int Rows = Strings.size();
+            int Columns = Strings[0].size();
+            vector<int> Equality (Rows, 1);
+
+            for(int X = 0; X < Columns; X++)
+            {
+                bool Delete = false;
+
+                for(int Y = 1; Y < Rows; Y++)
+                {
+                    if(Equality[Y] == 1)
+                    {
+                        if(Strings[Y-1][X] > Strings[Y][X])
+                        {
+                            Delete = true;
+                            Count++;
+
+                            break;
+                        }
+                    }
+                }
+
+                if(Delete == false)
+                {
+                    for(int Y = 1; Y < Rows; Y++)
+                    {
+                        if(Equality[Y] == 1)
+                        {
+                            if(Strings[Y-1][X] < Strings[Y][X])
+                            {
+                                Equality[Y] = 0;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return Count;
+        }
+};
