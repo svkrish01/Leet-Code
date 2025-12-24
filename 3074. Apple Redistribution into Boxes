@@ -1,0 +1,34 @@
+/*
+Developer   - Sriram Venkata Krishna
+Date        - 24-12-2025
+Platform    - Leet Code
+*/
+
+//3074. Apple Redistribution into Boxes
+
+class Solution 
+{
+    public:
+        int minimumBoxes(vector<int>& Apple, vector<int>& Capacity) 
+        {
+            int Count = 0;
+            int Boxes = 0;
+            int Length_Apple = Apple.size();
+            int Length_Capacity = Capacity.size();
+
+            for(int X = 0; X < Length_Apple; X++)
+            {
+                Count += Apple[X];
+            }
+
+            sort(Capacity.rbegin(), Capacity.rend());
+
+            for(int X = 0; Count > 0; X++)
+            {
+                Count -= Capacity[X];
+                Boxes++;
+            }
+
+            return Boxes;
+        }
+};
